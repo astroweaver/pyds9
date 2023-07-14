@@ -74,7 +74,7 @@ def get_xpans_ds9():
                    " to your PATH and try again.")
     xpans_warning = ("Can't locate xpans executable.")
 
-    if ds9Globals["ulist"][0] == 'Darwin' and not ds9[0]:
+    if ds9Globals["ulist"][0] == 'Darwin': # and not ds9[0]:
         # on mac OSX the Aqua version can be installed. If this is the case,
         # look for a "SAOImage DS9.app" directory in ``/Applications``,
         # ``$HOME`` and ``$HOME/Applications``. If it's found use the mac

@@ -29,6 +29,8 @@ AUTHOR = metadata.get('author', '')
 AUTHOR_EMAIL = metadata.get('author_email', '')
 LICENSE = metadata.get('license', 'unknown')
 URL = metadata.get('url', '')
+VERSION = metadata.get('version', '')
+RELEASE = False  # To indicate it is a devel version  
 
 # Get the long description from the package's docstring
 __import__(PACKAGENAME)
@@ -42,10 +44,10 @@ builtins._ASTROPY_PACKAGE_NAME_ = PACKAGENAME
 # Populate the dict of setup command overrides; this should be done before
 # invoking any other functionality from distutils since it can potentially
 # modify distutils' behavior.
-cmdclassd = register_commands()
+cmdclassd = register_commands(PACKAGENAME, VERSION, RELEASE)
 
 # Freeze build information in version.py
-generate_version_py(debug=get_debug_option(PACKAGENAME))
+generate_version_py(PACKAGENAME, VERSION, RELEASE, debug=get_debug_option(PACKAGENAME))
 
 # Treat everything in scripts except README.rst as a script to be installed
 scripts = [fname for fname in glob.glob(os.path.join('scripts', '*'))
